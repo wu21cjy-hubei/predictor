@@ -28,4 +28,9 @@ input_scaled = scaler.transform(input_data)
 # 预测
 if st.button("预测 Group"):
     prediction = model.predict(input_scaled)[0]
+    probabilities = model.predict_proba(input_scaled)[0]
     st.success(f"预测的 Group 是: {prediction}")
+    st.write("各组预测概率：")
+    for i, prob in enumerate(probabilities, start=1):
+        st.write(f"Group {i}: {prob:.2%}")
+
